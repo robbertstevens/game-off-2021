@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Levels/LevelOne.tscn" type="PackedScene" id=1]
+
+[node name="Root" type="Node2D"]
+
+[node name="LevelOne" parent="." instance=ExtResource( 1 )]
