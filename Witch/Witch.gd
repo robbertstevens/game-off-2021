@@ -26,6 +26,9 @@ func _physics_process(delta: float) -> void:
 	if !is_on_floor():
 		fsm.change_state(fsm.State.Falling)
 
+	if is_on_floor() && !$JumpBufferTimer.is_stopped():
+		$JumpBufferTimer.stop()
+		fsm.change_state(fsm.State.Jumping)
 
 func _input(event: InputEvent) -> void:
 	if _is_move_input(event) || fsm.is_state(fsm.State.Walking): 
@@ -35,6 +38,8 @@ func _input(event: InputEvent) -> void:
 		$CoyoteTimer.stop()
 		fsm.change_state(fsm.State.Jumping)
 
+	if event.is_action_pressed("ui_accept") && !_is_floored():
+		$JumpBufferTimer.start()
 
 func _is_move_input(event: InputEvent) -> bool:
 	return event.is_action("ui_right") || event.is_action("ui_left") || event.is_action("ui_down") || event.is_action("ui_up")
