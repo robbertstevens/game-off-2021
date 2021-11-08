@@ -29,6 +29,8 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor() && !$JumpBufferTimer.is_stopped():
 		$JumpBufferTimer.stop()
 		fsm.change_state(fsm.State.Jumping)
+		
+	$StateLabel.text = fsm.get_current_state_label()
 
 func _input(event: InputEvent) -> void:
 	if _is_move_input(event) || fsm.is_state(fsm.State.Walking): 

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Witch/Witch.png" type="Texture" id=1]
 [ext_resource path="res://Witch/Witch.gd" type="Script" id=2]
 [ext_resource path="res://Witch/WitchStateMachine.gd" type="Script" id=3]
+[ext_resource path="res://GUI/theme.tres" type="Theme" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -25,3 +26,16 @@ one_shot = true
 [node name="JumpBufferTimer" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
+
+[node name="StateLabel" type="Label" parent="."]
+margin_left = -19.0
+margin_top = -28.0
+margin_right = 21.0
+margin_bottom = -14.0
+theme = ExtResource( 4 )
+text = "state"
+align = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

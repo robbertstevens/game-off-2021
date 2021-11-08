@@ -5,14 +5,6 @@ enum State {
 }
 
 
-func physics_process(delta: float) -> void:
-	match (current_state):
-		State.Idle: _do_idle_state(delta)
-		State.Walking: _do_walking_state(delta)
-		State.Jumping: _do_jumping_state(delta)
-		State.Falling: _do_falling_state(delta)
-
-
 func _do_idle_state(delta: float) -> void:
 	owner.velocity.y = owner.velocity.y + owner.gravity * delta
 
@@ -51,3 +43,7 @@ func _do_falling_state(delta: float) -> void:
 	
 	if owner.is_on_floor():
 		change_state(State.Idle)
+
+
+func get_states() -> Array: 
+	return State.keys()

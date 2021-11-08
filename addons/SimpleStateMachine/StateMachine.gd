@@ -20,7 +20,23 @@ func change_state(new_state: int) -> void:
 
 
 func physics_process(delta: float) -> void:
-	pass
+	var state_name = get_states()[current_state]
+	var state_method = ("_do_" + state_name + "_state").to_lower()
+	call(state_method, delta)
+
 
 func is_state(state: int) -> bool: 
 	return current_state == state
+
+
+func get_current_state_label() -> String: 
+	return get_states()[current_state]
+
+"""
+Gets the list of states available in the statemachine. If you use an enum to define states, you can 
+return `States.keys()`
+@return Array<string>
+"""
+func get_states() -> Array:
+	assert(false)
+	return []
