@@ -1,6 +1,6 @@
 extends StateMachine
 
-enum State { Idle, Walking }
+enum State { Walking, Idle }
 
 
 func _do_idle_state(delta: float) -> void: 
