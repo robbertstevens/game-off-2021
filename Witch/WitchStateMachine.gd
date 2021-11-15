@@ -6,10 +6,6 @@ enum State {
 
 onready var animation_player: AnimationPlayer = owner.get_node("AnimationPlayer")
 
-func physics_process(delta: float) -> void:
-	.physics_process(delta)
-#	print(get_current_state_label())
-
 
 func _do_idle_state(delta: float) -> void:
 	animation_player.play("Idle")
@@ -17,10 +13,15 @@ func _do_idle_state(delta: float) -> void:
 
 
 func _do_walking_state(delta: float) -> void: 
+	animation_player.play("Walking")
+	
+	if Input.is_action_pressed("ui_up") && owner.can_jump(): 
+		change_state(State.Jumping)
+		return
+		
 	if owner.direction.length() == 0:
 		change_state(State.Idle)
 		return
-	animation_player.play("Walking")
 
 
 func _do_jumping_state(_delta: float) -> void:

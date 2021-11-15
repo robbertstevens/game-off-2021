@@ -1,0 +1,6 @@
+[gd_scene format=2]
+
+[node name="HitBox" type="Area2D"]
+modulate = Color( 0, 0.239216, 0.952941, 1 )
+collision_layer = 0
+collision_mask = 0

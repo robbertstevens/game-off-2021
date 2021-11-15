@@ -8,6 +8,12 @@ var previous_state: int
 func _ready() -> void:
 	yield(owner, "ready")
 
+
+"""
+run this in your _input() method
+"""
+func input(event: InputEvent) -> void:
+	pass
 	
 """
 Changes the state of the Finate State Machine only when the state is different 

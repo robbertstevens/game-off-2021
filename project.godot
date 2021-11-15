@@ -24,10 +24,14 @@ config/name="BugBrewer"
 run/main_scene="res://Root.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Gui="*res://GUI/GUI.tscn"
+
 [display]
 
-window/size/width=640
-window/size/height=360
+window/size/width=320
+window/size/height=180
 window/size/test_width=960
 window/size/test_height=540
 window/stretch/mode="2d"
@@ -65,6 +69,9 @@ texture={
 
 2d_physics/layer_1="Environment"
 2d_physics/layer_2="EnemyHitBox"
+2d_physics/layer_3="EnemyHurtBox"
+2d_physics/layer_4="PlayerHitBox"
+2d_physics/layer_5="PlayerHurtBox"
 
 [physics]
 

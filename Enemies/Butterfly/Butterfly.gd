@@ -3,7 +3,7 @@ extends KinematicBody2D
 export (int) var move_speed := 10
 
 onready var fsm := $SimpleStateMachine
-
+onready var hit_box := $HitBox
 
 var velocity := Vector2.ZERO
 var direction := Vector2.RIGHT
@@ -24,6 +24,14 @@ func _physics_process(delta: float) -> void:
 		Vector2.RIGHT:
 			if !$RightFloorCheck.is_colliding():
 				direction = Vector2.LEFT
+
+
+func _on_HitBox_area_entered(hurt_box: Area2D) -> void:
+	print(hit_box.global_position, hurt_box.global_position)
+	print(hit_box.global_position.y > hurt_box.global_position.y)
+	if hit_box.global_position.y < hurt_box.global_position.y:
+		return
+		
+	print("I got hurt")
 	
-	
-	$StateLabel.text = fsm.get_current_state_label()
+	queue_free()
