@@ -26,7 +26,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Gui="*res://GUI/GUI.tscn"
+Gui="*res://GUI/GUICanvasLayer.tscn"
 
 [display]
 
