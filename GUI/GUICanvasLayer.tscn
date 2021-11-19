@@ -17,28 +17,44 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GUI"]
-margin_right = 68.0
+margin_right = 116.0
 margin_bottom = 35.0
 
-[node name="ScoreContainer" type="HBoxContainer" parent="GUI/VBoxContainer"]
-margin_right = 68.0
+[node name="LevelScoreContainer" type="HBoxContainer" parent="GUI/VBoxContainer"]
+margin_right = 116.0
 margin_bottom = 8.0
 
-[node name="ScoreLabel" type="Label" parent="GUI/VBoxContainer/ScoreContainer"]
-margin_right = 48.0
+[node name="ScoreLabel" type="Label" parent="GUI/VBoxContainer/LevelScoreContainer"]
+margin_right = 96.0
 margin_bottom = 8.0
-text = "Score:"
+text = "Level score:"
 
-[node name="ScoreTicker" type="Label" parent="GUI/VBoxContainer/ScoreContainer"]
-margin_left = 52.0
-margin_right = 68.0
+[node name="ScoreTicker" type="Label" parent="GUI/VBoxContainer/LevelScoreContainer"]
+margin_left = 100.0
+margin_right = 116.0
+margin_bottom = 8.0
+text = "88"
+
+[node name="TotalScoreContainer" type="HBoxContainer" parent="GUI/VBoxContainer"]
+margin_top = 12.0
+margin_right = 116.0
+margin_bottom = 20.0
+
+[node name="ScoreLabel" type="Label" parent="GUI/VBoxContainer/TotalScoreContainer"]
+margin_right = 96.0
+margin_bottom = 8.0
+text = "Total score:"
+
+[node name="ScoreTicker" type="Label" parent="GUI/VBoxContainer/TotalScoreContainer"]
+margin_left = 100.0
+margin_right = 116.0
 margin_bottom = 8.0
 text = "88"
 
 [node name="TimerContainer" type="HBoxContainer" parent="GUI/VBoxContainer"]
-margin_top = 12.0
-margin_right = 68.0
-margin_bottom = 20.0
+margin_top = 24.0
+margin_right = 116.0
+margin_bottom = 32.0
 
 [node name="TimerLabel" type="Label" parent="GUI/VBoxContainer/TimerContainer"]
 margin_right = 40.0

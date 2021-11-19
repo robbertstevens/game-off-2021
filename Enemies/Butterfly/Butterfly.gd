@@ -1,5 +1,8 @@
 extends KinematicBody2D
 
+
+signal captured
+
 export (int) var move_speed := 10
 
 onready var fsm := $SimpleStateMachine
@@ -10,6 +13,7 @@ var direction := Vector2.RIGHT
 
 func _ready() -> void:
 	fsm.change_state(fsm.State.Walking)
+	add_to_group(Util.GROUP_BUGS)
 
 
 func _physics_process(delta: float) -> void:
@@ -27,11 +31,9 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_HitBox_area_entered(hurt_box: Area2D) -> void:
-	print(hit_box.global_position, hurt_box.global_position)
-	print(hit_box.global_position.y > hurt_box.global_position.y)
 	if hit_box.global_position.y < hurt_box.global_position.y:
 		return
-		
-	print("I got hurt")
+	
+	emit_signal("captured")
 	
 	queue_free()

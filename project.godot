@@ -27,6 +27,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Gui="*res://GUI/GUICanvasLayer.tscn"
+Util="*res://Util.gd"
 
 [display]
 
