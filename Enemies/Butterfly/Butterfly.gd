@@ -5,20 +5,17 @@ signal captured
 
 export (int) var move_speed := 10
 
-onready var fsm := $SimpleStateMachine
 onready var hit_box := $HitBox
 
 var velocity := Vector2.ZERO
 var direction := Vector2.RIGHT
 
 func _ready() -> void:
-	fsm.change_state(fsm.State.Walking)
 	add_to_group(Util.GROUP_BUGS)
 
 
 func _physics_process(delta: float) -> void:
-	fsm.physics_process(delta)
-	
+	velocity.x = direction.x * move_speed
 	velocity = move_and_slide(velocity, Vector2.UP)
 	
 	match(direction): 

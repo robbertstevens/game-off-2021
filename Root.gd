@@ -5,14 +5,14 @@ signal total_score_updated(new_score)
 
 
 export (Array, PackedScene) var levels := []
+export (PackedScene) var transition_level
 
 
+var max_total_score := 0
 var total_score := 0 setget set_total_score
 var level_score := 0 setget set_level_score
 var level_list := []
 var current_level = null
-
-
 
 
 func _ready():
@@ -20,16 +20,13 @@ func _ready():
 	connect("total_score_updated", Gui, "_on_Root_total_score_updated")
 	
 	level_list = levels
-
+	
 	next_level()
 
 func next_level() -> void:
-	self.total_score += level_score
-	self.level_score = 0
-	
 	if current_level:
 		current_level.queue_free()
-		
+	
 	var level = level_list.pop_front()
 	
 	current_level = level.instance()
@@ -46,7 +43,7 @@ func get_all_bugs() -> Array:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept"):
-		next_level()
+		play_cut_scene()
 
 
 func _on_Bug_captured() -> void:
@@ -61,3 +58,23 @@ func set_level_score(new_value) -> void:
 func set_total_score(new_value) -> void:
 	total_score = new_value
 	emit_signal("total_score_updated", total_score)
+
+
+func play_cut_scene() -> void:	
+	var cut_scene = transition_level.instance()
+	
+	cut_scene.connect("ingredients_mixed", self, "_on_Brewing_ingredients_mixed")
+	cut_scene.ingredients = level_score
+	
+	self.total_score += level_score
+	self.level_score = 0
+	
+	if current_level:
+		current_level.queue_free()
+	
+	current_level = cut_scene
+	add_child(cut_scene)
+
+
+func _on_Brewing_ingredients_mixed() -> void:
+	next_level()

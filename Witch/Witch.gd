@@ -4,6 +4,8 @@ export (int) var move_speed := 300
 export (int) var gravity := 2000
 export (int) var jump_strength := 500
 
+
+
 onready var hurt_box := $HurtBox
 
 var velocity := Vector2(0, 500)
@@ -15,7 +17,7 @@ var can_jump := false
 
 func _ready() -> void:
 	Gui.player = self
-	last_frame_is_on_floor = is_on_floor()
+
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor() && last_frame_is_on_floor:
@@ -23,8 +25,12 @@ func _physics_process(delta: float) -> void:
 		
 	direction = get_move_direction()
 	
-	if direction.length() > 0: $AnimatedSprite.play("running")
-	else: $AnimatedSprite.play("idle")
+	if direction.length() > 0: 
+		$AnimatedSprite.play("running")
+		if $DustTimer.is_stopped(): $DustTimer.start()
+	else: 
+		$AnimatedSprite.play("idle")
+		$DustTimer.stop()
 	
 	if direction.x > 0: $AnimatedSprite.flip_h = false
 	if direction.x < 0: $AnimatedSprite.flip_h = true
@@ -32,6 +38,9 @@ func _physics_process(delta: float) -> void:
 	apply_movement(delta)
 	apply_gravity(delta)
 	apply_velocity(delta)
+	
+	if is_on_floor() && !last_frame_is_on_floor:
+		$DustTimer.spawn_dust()
 	
 	last_frame_is_on_floor = is_on_floor()
 
@@ -83,3 +92,10 @@ func _on_HurtBox_area_entered(hit_box: Area2D) -> void:
 		return
 	
 	velocity.y -= jump_strength + velocity.y
+
+
+func _on_DustTimer_timeout() -> void:
+	if not is_on_floor():
+		return
+	
+	$DustTimer.spawn_dust()
