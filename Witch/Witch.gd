@@ -92,6 +92,7 @@ func _on_HurtBox_area_entered(hit_box: Area2D) -> void:
 		return
 	
 	velocity.y -= jump_strength + velocity.y
+	$DustTimer.spawn_dust()
 
 
 func _on_DustTimer_timeout() -> void:

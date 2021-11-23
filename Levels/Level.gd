@@ -3,7 +3,7 @@ extends Node
 
 onready var player := $Witch
 onready var camera: Camera2D = $Camera
-
+onready var exit = $Exit
 
 func _ready() -> void:
 	camera.make_current()
