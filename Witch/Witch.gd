@@ -1,9 +1,10 @@
 extends KinematicBody2D
 
+signal hurt
+
 export (int) var move_speed := 300
 export (int) var gravity := 2000
 export (int) var jump_strength := 500
-
 
 
 onready var hurt_box := $HurtBox
@@ -13,11 +14,7 @@ var direction := Vector2.ZERO
 
 var last_frame_is_on_floor := false
 var can_jump := false
-
-
-func _ready() -> void:
-	Gui.player = self
-
+var health := 1
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor() && last_frame_is_on_floor:
@@ -43,6 +40,10 @@ func _physics_process(delta: float) -> void:
 		$DustTimer.spawn_dust()
 	
 	last_frame_is_on_floor = is_on_floor()
+	
+	
+	if health <= 0:
+		emit_signal("hurt")
 
 
 func apply_movement(_delta: float) -> void:
@@ -100,3 +101,7 @@ func _on_DustTimer_timeout() -> void:
 		return
 	
 	$DustTimer.spawn_dust()
+
+
+func _on_HitBox_area_entered(area: Area2D) -> void:
+	health -= 1

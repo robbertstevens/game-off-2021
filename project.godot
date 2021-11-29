@@ -9,12 +9,24 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Level",
+"class": "CutsceneLevel",
+"language": "GDScript",
+"path": "res://Cutscenes/CutsceneLevel.gd"
+}, {
+"base": "Node",
+"class": "Level",
+"language": "GDScript",
+"path": "res://Levels/Level.gd"
+}, {
 "base": "Node",
 "class": "StateMachine",
 "language": "GDScript",
 "path": "res://addons/SimpleStateMachine/StateMachine.gd"
 } ]
 _global_script_class_icons={
+"CutsceneLevel": "",
+"Level": "",
 "StateMachine": ""
 }
 
@@ -26,7 +38,6 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Gui="*res://GUI/GUICanvasLayer.tscn"
 Util="*res://Util.gd"
 
 [display]
@@ -73,6 +84,7 @@ texture={
 2d_physics/layer_3="EnemyHurtBox"
 2d_physics/layer_4="PlayerHitBox"
 2d_physics/layer_5="PlayerHurtBox"
+2d_physics/layer_6="EnvironmentHurtBox"
 
 [physics]
 

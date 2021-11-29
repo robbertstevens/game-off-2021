@@ -3,9 +3,10 @@ extends KinematicBody2D
 
 signal captured
 
-export (int) var move_speed := 10
 
 onready var hit_box := $HitBox
+
+export (int) var move_speed := 10
 
 var velocity := Vector2.ZERO
 var direction := Vector2.RIGHT
@@ -22,8 +23,12 @@ func _physics_process(delta: float) -> void:
 		Vector2.LEFT:
 			if !$LeftFloorCheck.is_colliding():
 				direction = Vector2.RIGHT
+			if $LeftWallCheck.is_colliding():
+				direction = Vector2.RIGHT
 		Vector2.RIGHT:
 			if !$RightFloorCheck.is_colliding():
+				direction = Vector2.LEFT
+			if $RightWallCheck.is_colliding():
 				direction = Vector2.LEFT
 
 

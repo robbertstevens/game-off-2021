@@ -1,26 +1,28 @@
+class_name Level
+
 extends Node
 
 
-onready var player := $Witch
-onready var camera: Camera2D = $Camera
-onready var exit = $Exit
+signal next_level
+signal reload_level
+
+var level_score := 0
+
 
 func _ready() -> void:
-	camera.make_current()
+	Util.level_score = 0
 
 
-func _physics_process(delta: float) -> void:
-	if player != null: 
-		camera.global_position = player.global_position
+func next_level() -> void:
+	emit_signal("next_level")
+	queue_free()
 
-	var tile_map = $TileMap
 
-	if tile_map: 
-		var bounds = TileMapBounds.from_tile_map(tile_map)
-		camera.limit_left = bounds.limit_left
-		camera.limit_right = bounds.limit_right
-		camera.limit_top =  bounds.limit_top
-		camera.limit_bottom = bounds.limit_bottom
+func reload_level() -> void:
+	Util.total_restarts += 1
+	emit_signal("reload_level")
+	queue_free()
+
 
 class TileMapBounds:
 	var limit_left

@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://GUI/theme.tres" type="Theme" id=1]
+[ext_resource path="res://GUI/LevelUserInterface.gd" type="Script" id=2]
+
+[node name="LevelUserInterface" type="CanvasLayer"]
+script = ExtResource( 2 )
+
+[node name="GUI" type="MarginContainer" parent="."]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 59.0
+margin_bottom = 40.0
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI"]
+margin_right = 60.0
+margin_bottom = 35.0
+
+[node name="LevelScoreContainer" type="HBoxContainer" parent="GUI/VBoxContainer"]
+margin_right = 60.0
+margin_bottom = 8.0
+
+[node name="ScoreLabel" type="Label" parent="GUI/VBoxContainer/LevelScoreContainer"]
+margin_right = 48.0
+margin_bottom = 8.0
+text = "Score:"
+
+[node name="ScoreTicker" type="Label" parent="GUI/VBoxContainer/LevelScoreContainer"]
+margin_left = 52.0
+margin_right = 60.0
+margin_bottom = 8.0
+text = "0"
