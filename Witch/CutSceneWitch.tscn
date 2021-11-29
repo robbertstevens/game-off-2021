@@ -1,18 +1,21 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Witch/AnimatedSprite.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Witch/CutSceneWitch.gd" type="Script" id=2]
 [ext_resource path="res://Common/Dust/DustTimer.tscn" type="PackedScene" id=3]
+[ext_resource path="res://click.wav" type="AudioStream" id=4]
 
 [node name="CutSceneWitch" type="Node2D"]
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" parent="." instance=ExtResource( 1 )]
 animation = "idle"
-frame = 3
 
 [node name="DustTimer" parent="." instance=ExtResource( 3 )]
 wait_time = 0.3
 autostart = true
+
+[node name="WalkAudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
 
 [connection signal="timeout" from="DustTimer" to="." method="_on_DustTimer_timeout"]

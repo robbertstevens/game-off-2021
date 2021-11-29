@@ -1,12 +1,19 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://GUI/theme.tres" type="Theme" id=1]
 [ext_resource path="res://Logo.png" type="Texture" id=2]
 [ext_resource path="res://Cutscenes/Intro/Intro.gd" type="Script" id=3]
 [ext_resource path="res://Tileset/BugBrewer.tres" type="TileSet" id=4]
+[ext_resource path="res://Background.png" type="Texture" id=5]
+[ext_resource path="res://Enemies/Butterfly/Butterfly.tscn" type="PackedScene" id=6]
 
 [node name="Intro" type="Node2D"]
 script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 160, 72 )
+scale = Vector2( 1.2625, 1 )
+texture = ExtResource( 5 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -20,9 +27,9 @@ __meta__ = {
 }
 
 [node name="Title" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
-margin_top = 52.0
+margin_top = 55.0
 margin_right = 320.0
-margin_bottom = 102.0
+margin_bottom = 105.0
 alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/VBoxContainer/Title"]
@@ -31,21 +38,37 @@ margin_bottom = 50.0
 texture = ExtResource( 2 )
 
 [node name="Options" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
-margin_top = 106.0
+margin_top = 109.0
 margin_right = 320.0
-margin_bottom = 128.0
+margin_bottom = 125.0
 alignment = 1
 
 [node name="Button" type="Button" parent="CanvasLayer/VBoxContainer/Options"]
-margin_left = 114.0
-margin_right = 206.0
-margin_bottom = 22.0
+margin_left = 120.0
+margin_right = 200.0
+margin_bottom = 16.0
 text = "Start"
+
+[node name="Butterfly" parent="." instance=ExtResource( 6 )]
+position = Vector2( -8, 144 )
+move_speed = 75
+
+[node name="Butterfly2" parent="." instance=ExtResource( 6 )]
+position = Vector2( 320, 144 )
+move_speed = 75
+
+[node name="Butterfly4" parent="." instance=ExtResource( 6 )]
+position = Vector2( 32, 32 )
+move_speed = 75
+
+[node name="Butterfly3" parent="." instance=ExtResource( 6 )]
+position = Vector2( 344, 16 )
+move_speed = 75
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 4 )
 cell_size = Vector2( 16, 16 )
 format = 1
-tile_data = PoolIntArray( -1, 0, 0, -65536, 0, 1, -65535, 0, 1, -65534, 0, 1, -65533, 0, 1, -65532, 0, 1, -65531, 0, 1, -65530, 0, 1, -65529, 0, 1, -65528, 0, 1, -65527, 0, 1, -65526, 0, 1, -65525, 0, 1, -65524, 0, 1, -65523, 0, 1, -65522, 0, 1, -65521, 0, 1, -65520, 0, 1, -65519, 0, 1, -65518, 0, 1, -65517, 0, 1, -65516, 0, 2, 65535, 0, 65536, 0, 0, 65537, 1, 0, 65537, 2, 0, 65537, 3, 0, 65537, 4, 0, 65537, 5, 0, 65537, 6, 0, 65537, 7, 0, 65537, 8, 0, 65537, 9, 0, 65537, 10, 0, 65537, 11, 0, 65537, 12, 0, 65537, 13, 0, 65537, 14, 0, 65537, 15, 0, 65537, 16, 0, 65537, 17, 0, 65537, 18, 0, 65537, 19, 0, 65537, 20, 0, 65538, 131071, 0, 131072, 65536, 0, 0, 65537, 0, 131073, 65538, 0, 131073, 65539, 0, 131073, 65540, 0, 131073, 65541, 0, 131073, 65542, 0, 131073, 65543, 0, 131073, 65544, 0, 131073, 65545, 0, 131073, 65546, 0, 131073, 65547, 0, 131073, 65548, 0, 131073, 65549, 0, 131073, 65550, 0, 131073, 65551, 0, 131073, 65552, 0, 131073, 65553, 0, 131073, 65554, 0, 131073, 65555, 0, 0, 65556, 0, 131074, 131072, 0, 65539, 131091, 0, 65539, 196608, 0, 65539, 196627, 0, 65539, 262144, 0, 65539, 262163, 0, 65539, 327680, 0, 65539, 327699, 0, 65539, 393216, 0, 65539, 393235, 0, 65539, 458752, 0, 65539, 458771, 0, 65539, 524288, 0, 65539, 524307, 0, 65539, 655359, 0, 0, 589824, 0, 0, 589825, 0, 1, 589826, 0, 1, 589827, 0, 1, 589828, 0, 1, 589829, 0, 1, 589830, 0, 1, 589831, 0, 1, 589832, 0, 1, 589833, 0, 1, 589834, 0, 1, 589835, 0, 1, 589836, 0, 1, 589837, 0, 1, 589838, 0, 1, 589839, 0, 1, 589840, 0, 1, 589841, 0, 1, 589842, 0, 1, 589843, 0, 0, 589844, 0, 2, 720895, 0, 131072, 655360, 0, 131073, 655361, 0, 131073, 655362, 0, 131073, 655363, 0, 131073, 655364, 0, 131073, 655365, 0, 131073, 655366, 0, 131073, 655367, 0, 131073, 655368, 0, 131073, 655369, 0, 131073, 655370, 0, 131073, 655371, 0, 131073, 655372, 0, 131073, 655373, 0, 131073, 655374, 0, 131073, 655375, 0, 131073, 655376, 0, 131073, 655377, 0, 131073, 655378, 0, 131073, 655379, 0, 131073, 655380, 0, 131074 )
+tile_data = PoolIntArray( 65554, 0, 196608, 65555, 0, 196609, 65556, 0, 196609, 65557, 0, 196610, 196606, 0, 196608, 196607, 0, 196609, 131072, 0, 196609, 131073, 0, 196609, 131074, 0, 196610, 655359, 0, 0, 589824, 0, 1, 589825, 0, 1, 589826, 0, 1, 589827, 0, 1, 589828, 0, 1, 589829, 0, 1, 589830, 0, 1, 589831, 0, 1, 589832, 0, 1, 589833, 0, 1, 589834, 0, 1, 589835, 0, 1, 589836, 0, 1, 589837, 0, 1, 589838, 0, 1, 589839, 0, 1, 589840, 0, 1, 589841, 0, 1, 589842, 0, 1, 589843, 0, 1, 589844, 0, 2, 720895, 0, 65536, 655360, 0, 65537, 655361, 0, 65537, 655362, 0, 65537, 655363, 0, 65537, 655364, 0, 65537, 655365, 0, 65537, 655366, 0, 65537, 655367, 0, 65537, 655368, 0, 65537, 655369, 0, 65537, 655370, 0, 65537, 655371, 0, 65537, 655372, 0, 65537, 655373, 0, 65537, 655374, 0, 65537, 655375, 0, 65537, 655376, 0, 65537, 655377, 0, 65537, 655378, 0, 65537, 655379, 0, 65537, 655380, 0, 65538, 786431, 0, 131072, 720896, 0, 131073, 720897, 0, 131073, 720898, 0, 131073, 720899, 0, 131073, 720900, 0, 131073, 720901, 0, 131073, 720902, 0, 131073, 720903, 0, 131073, 720904, 0, 131073, 720905, 0, 131073, 720906, 0, 131073, 720907, 0, 131073, 720908, 0, 131073, 720909, 0, 131073, 720910, 0, 131073, 720911, 0, 131073, 720912, 0, 131073, 720913, 0, 131073, 720914, 0, 131073, 720915, 0, 131073, 720916, 0, 131074 )
 
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/Options/Button" to="." method="_on_Button_pressed"]

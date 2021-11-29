@@ -38,6 +38,7 @@ func _physics_process(delta: float) -> void:
 	
 	if is_on_floor() && !last_frame_is_on_floor:
 		$DustTimer.spawn_dust()
+		$WalkAudioStreamPlayer.play()
 	
 	last_frame_is_on_floor = is_on_floor()
 	
@@ -53,6 +54,7 @@ func apply_movement(_delta: float) -> void:
 		$CoyoteTimer.stop()
 		$JumpBufferTimer.stop()
 		velocity.y -= jump_strength
+		$JumpAudioStreamPlayer.play()
 
 
 func apply_gravity(delta: float) -> void:
@@ -101,7 +103,7 @@ func _on_DustTimer_timeout() -> void:
 		return
 	
 	$DustTimer.spawn_dust()
-
+	$WalkAudioStreamPlayer.play()
 
 func _on_HitBox_area_entered(area: Area2D) -> void:
 	health -= 1

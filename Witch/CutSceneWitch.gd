@@ -8,3 +8,4 @@ func play_animation(anim: String) -> void:
 func _on_DustTimer_timeout() -> void:
 	if $AnimatedSprite.animation =="running":
 		$DustTimer.spawn_dust()
+		$WalkAudioStreamPlayer.play()
